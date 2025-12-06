@@ -1,0 +1,172 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1cm]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{hyperref}
+
+% Remove page numbering
+\pagestyle{empty}
+
+% Reduce spacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\setlist{nosep, leftmargin=12pt}
+
+% Section formatting
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+
+% Experience macro
+% Usage: \experience{Company}{Date}{Role}{Location}{Bullets}
+% Output: Role, Company, Location (hfill) Date
+\newcommand{\experience}[5]{
+  \noindent
+  \textbf{#3}, #1, #4 \hfill #2 \\
+  \begin{minipage}[t]{\textwidth}
+    \vspace{-0.5em}
+    \begin{itemize}[topsep=0pt, itemsep=2pt, leftmargin=1.2em]
+        #5
+    \end{itemize}
+  \end{minipage}
+  \vspace{2pt}
+}
+
+% Education macro
+% Usage: \education{School}{Date}{Degree}{Location}{Bullets}
+% Output: School, Degree, Location (hfill) Date
+\newcommand{\education}[5]{
+  \noindent
+  \textbf{#1}, \textit{#3}, #4 \hfill #2 \\
+  \begin{minipage}[t]{\textwidth}
+    \vspace{-0.5em}
+    \begin{itemize}[topsep=0pt, itemsep=2pt, leftmargin=1.2em]
+        #5
+    \end{itemize}
+  \end{minipage}
+  \vspace{2pt}
+}
+
+\begin{document}
+
+% === Header ========================================================
+\begin{center}
+  \textbf{\LARGE Giacomo Guidotto} \\
+  \vspace{2pt}
+  \href{mailto:xxxx@gmail.com}{xxxx@gmail.com}
+  \;|\; xxxxxxxxxx
+  \;|\; \href{https://linkedin.com/in/giacomo-guidotto}{linkedin.com/in/giacomo-guidotto}
+  \;|\; \href{https://github.com/giacomoguidotto}{github.com/giacomoguidotto}
+\end{center}
+
+% === Education ======================================================
+\section{Education}
+
+% \education
+% {University Name}
+% {Month Year -- Month Year}
+% {Degree Name (e.g. Bachelor of Science in Y)}
+% {City, Country}
+% {
+% \item Final Grade: X/110, GPA: Y.Y/30 (optional)
+% \item Thesis/Final Paper: ``Thesis Title Here'', Grade: X/X (Advisor: Prof. Name Surname)
+% \item Relevant coursework: Course 1, Course 2, Course 3, Course 4
+% }
+
+\education
+{Ca' Foscari University of Venice}
+{Sep 2022 -- Jul 2025}
+{Bachelor of Science in Information Technology}
+{Venice, Italy}
+{
+\item Foundations in algorithms, data structures, software development, and AI. \textbf{Grade: Laude, GPA: 29.0/30}
+\item Research Thesis in the application of Physics-Informed Neural Networks in epidemiological modeling.
+\item Core courses: Algorithms, Computer Architecture, Operating Systems, Networking, C, OOP, Introduction to AI
+}
+
+\education
+{University of Gothenburg}
+{Sep 2024 -- Jan 2025}
+{Erasmus Exchange Program}
+{Gothenburg, Sweden}
+{
+\item Relevant coursework: Introduction to Data Science and AI, Functional Programming
+}
+
+% === Achievements ==================================================
+\section{Achievements}
+
+\begin{itemize}
+  \item Selected among top 15\% of STEM mentees (2,000+ applicants), LeadTheFuture, 2025
+  \item Selected for a summer school on cutting-edge CS research led by world-class researchers, BOOST '25, 2025
+  \item Acquired a C2 level in English, Cambridge Advanced English, Grade: 203, 2025
+\end{itemize}
+
+% === Experience ====================================================
+\section{Experience}
+
+\experience
+{Danfoss}
+{Sep 2022 -- Present}
+{Software Developer}
+{Venice, Italy}
+{
+\item Designed and developed web applications, microservices, and data pipelines for an IoT platform.
+\item Promoted from Junior role in 2 years, leading to increased responsibility and impact.
+\item Technologies used: TypeScript, React, Go, Python, SQL, Kubernetes, CI/CD, Git, Azure, etc.
+}
+
+% \vspace{5pt}
+
+\experience
+{Ca' Foscari University of Venice}
+{Oct 2025 -- Present}
+{Scientific Researcher}
+{Venice, Italy}
+{
+\item Leading the creation of a new Python Library capable of building and configuring Physics-Informed Neural Networks.
+\item Reduced training time by 30\% by introducing innovative stopping criteria in the Neural Networks training.
+\item Technologies used: Python, PyTorch, uv, GitHub, Docker, etc.
+}
+
+% \experience
+% {Company Name}
+% {Month Year -- Month Year}
+% {Job Title (e.g. Finance Analyst Intern -- Data Analytics and Automation)}
+% {City, Country}
+% {
+% \item Designed and implemented an automated reporting pipeline, saving X+ hours per week
+% \item Developed Python scripts and SQL queries for data extraction and KPI calculation (50+ KPIs)
+% \item Built and deployed automation for monthly reports, reducing manual effort by Y hours per month
+% \item Designed BI dashboards (e.g., Power BI / Tableau / QuickSight) to improve report clarity and accessibility
+% }
+
+% === Projects ======================================================
+\section{Projects}
+
+\textbf{\href{https://github.com/giacomoguidotto/pinn}{PINN:}}
+Work in progress. Developing a modular and flexible Python Library for solving mathematical problems using Physics-Informed Neural Networks. The ultimate goal is to provide an exceptional development experience, utilizing automated scripts that streamline the project setup for the user.
+\\[0.1cm]
+\textbf{\href{https://github.com/giacomoguidotto/workspace}{Workspace:}}
+Designed a declarative and robust yet flexible development environment. With configurations ranging from the Operating System to the single applications, following the XDG standard. Using Nix allows for a reproducible and sandboxed development experience.
+
+% === Skills ========================================================
+\section{Skills}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+
+  \textbf{Programming:} &
+  Python (NumPy, Pandas, Scikit-learn, PyTorch), DBs (PostgreSQL, VictoriaMetrics), Typescript (Nest, React), Go, Nix, Git, \LaTeX \\
+  \textbf{Tools:} &
+  Azure DevOps, MageAI, Sentry, Grafana, Bytebase, Postman, GitHub, Docker \\
+  \textbf{Languages:} &
+  Italian (Native), English (C2) \\
+  \textbf{Interests:} &
+  Fitness, traveling, film, studying, etc.
+\end{tabularx}
+
+\vspace{4pt}
+\centering
+\footnotesize{\textit{I hereby authorize the treatment of my personal data according to the local law}}
+
+\end{document}
