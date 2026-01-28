@@ -1,173 +1,247 @@
-\documentclass[10pt,a4paper]{article}
+% =============================================================================
+% RESUME TEMPLATE
+% Author: Giacomo Guidotto
+% Last updated: 2025
+% Compiler: pdfLaTeX
+% =============================================================================
+
+\documentclass[10pt, a4paper]{article}
+
+% =============================================================================
+% PACKAGES
+% =============================================================================
+% Encoding and fonts
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Layout
 \usepackage[margin=1cm]{geometry}
+\usepackage{parskip}           % Better paragraph handling than manual \parskip
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{tabularx}
-\usepackage{hyperref}
 
-% Remove page numbering
+% Typography
+\usepackage{microtype}         % Subtle typographic improvements
+
+% hyperref should be loaded last (with few exceptions)
+\usepackage[
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  pdfauthor={Giacomo Guidotto},
+  pdftitle={Giacomo Guidotto - Resume},
+]{hyperref}
+
+% =============================================================================
+% CONFIGURATION
+% =============================================================================
+
+% --- Page style ---
 \pagestyle{empty}
 
-% Reduce spacing
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{2pt}
-\setlist{nosep, leftmargin=12pt}
+% --- Lengths (centralized for easy tweaking) ---
+\newlength{\sectionspacebefore}
+\newlength{\sectionspaceafter}
+\newlength{\entryspaceafter}
+\newlength{\bulletitemsep}
 
-% Section formatting
-\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
-\titlespacing*{\section}{0pt}{8pt}{4pt}
+\setlength{\sectionspacebefore}{8pt}
+\setlength{\sectionspaceafter}{4pt}
+\setlength{\entryspaceafter}{4pt}
+\setlength{\bulletitemsep}{2pt}
 
-% Experience macro
-% Usage: \experience{Company}{Date}{Role}{Location}{Bullets}
-% Output: Role, Company, Location (hfill) Date
-\newcommand{\experience}[5]{
-  \noindent
-  \textbf{#3}, #1, #4 \hfill #2 \\
-  \begin{minipage}[t]{\textwidth}
-    \vspace{-0.5em}
-    \begin{itemize}[topsep=0pt, itemsep=2pt, leftmargin=1.2em]
-        #5
-    \end{itemize}
-  \end{minipage}
-  \vspace{2pt}
+% --- List defaults ---
+\setlist{
+  nosep,
+  leftmargin=1.2em,
+  topsep=0pt,
+  itemsep=\bulletitemsep,
 }
 
-% Education macro
-% Usage: \education{School}{Date}{Degree}{Location}{Bullets}
-% Output: School, Degree, Location (hfill) Date
-\newcommand{\education}[5]{
-  \noindent
-  \textbf{#1}, \textit{#3}, #4 \hfill #2 \\
-  \begin{minipage}[t]{\textwidth}
-    \vspace{-0.5em}
-    \begin{itemize}[topsep=0pt, itemsep=2pt, leftmargin=1.2em]
-        #5
-    \end{itemize}
-  \end{minipage}
-  \vspace{2pt}
+% --- Section formatting ---
+\titleformat{\section}
+{\large\bfseries}  % format
+{}                 % label
+{0em}              % sep
+{}                 % before-code
+[\titlerule]       % after-code
+
+\titlespacing*{\section}
+{0pt}                    % left
+{\sectionspacebefore}    % before
+{\sectionspaceafter}     % after
+
+% =============================================================================
+% CUSTOM COMMANDS
+% =============================================================================
+
+% --- Header contact item with separator ---
+% Usage: \headeritem{content} or \headeritem[url]{content}
+\newcommand{\headersep}{\enspace\textbar\enspace}
+
+\newcommand{\headeritem}[2][]{%
+  \ifx&#1&%
+  #2%
+  \else%
+  \href{#1}{#2}%
+  \fi%
 }
 
+% --- Experience entry ---
+% Usage: \experience{company}{dates}{role}{location}{bullet items}
+\newcommand{\experience}[5]{%
+  \noindent
+  \textbf{#3}, #1, #4 \hfill #2\par
+  \vspace{-0.5em}
+  \begin{itemize}
+      #5
+  \end{itemize}
+  \vspace{\entryspaceafter}
+}
+
+% --- Education entry ---
+% Usage: \education{school}{dates}{degree}{location}{bullet items}
+\newcommand{\education}[5]{%
+  \noindent
+  \textbf{#1}, \textit{#2}, #3 \hfill #4\par
+  \vspace{-0.5em}
+  \begin{itemize}
+      #5
+  \end{itemize}
+  \vspace{\entryspaceafter}
+  }
+  
+  % --- Project entry ---
+  % Usage: \project{name}{url}{description}
+  \newcommand{\project}[3]{%
+  \textbf{\href{#2}{#1:}} #3\par
+  \vspace{\entryspaceafter}
+}
+
+% --- Skills row ---
+% Usage: \skillrow{category}{items}
+\newcommand{\skillrow}[2]{\textbf{#1:} & #2 \\}
+
+% =============================================================================
+% PERSONAL INFO (edit here)
+% =============================================================================
+\newcommand{\myname}{Giacomo Guidotto}
+\newcommand{\mytitle}{Software Engineer}
+\newcommand{\myemail}{xxxxxxxxxxxx@gmail.com}
+\newcommand{\myphone}{+39 xxx xxx xxxx}
+\newcommand{\mylinkedin}{linkedin.com/in/giacomo-guidotto}
+\newcommand{\mygithub}{github.com/giacomoguidotto}
+
+% =============================================================================
+% DOCUMENT
+% =============================================================================
 \begin{document}
 
-% === Header ========================================================
+% --- Header ---
 \begin{center}
-\href{mailto:xxxx@gmail.com}{xxxx@gmail.com}
-\;|\;
-+xx xxxxxxxx
-\;|\;
-\href{https://linkedin.com/in/giacomo-guidotto}{linkedin.com/in/giacomo-guidotto}
-\;|\;
-\href{https://github.com/giacomoguidotto}{github.com/giacomoguidotto}
+  \myphone%
+  \headersep%
+  \headeritem[mailto:\myemail]{\myemail}%
+  \headersep%
+  \headeritem[https://\mylinkedin]{\mylinkedin}%
+  \headersep%
+  \headeritem[https://\mygithub]{\mygithub}
 \end{center}
 
 \vspace{2pt}
 
-\textbf{\LARGE Giacomo Guidotto}
+{\LARGE\bfseries \myname}\par
+{\large \mytitle}
 
-\large Software Engineer
-
-% === Education ======================================================
+% --- Education ---
 \section{Education}
 
 \education
-{Ca' Foscari University of Venice}
-{Sep 2022 -- Jul 2025}
-{BSc in Computer Science}
-{Venice, Italy}
-{
-\item Foundations in algorithms, data structures, software development, and AI.
-\textbf{GPA: 29.0/30}
-\item Research Thesis in the application of Physics-Informed Neural Networks in epidemiological modeling.
-\item Acquired knowledge in: Algorithms, Computer Architecture, Operating Systems, Networking, C, OOP, Introduction to AI
-}
+  {Ca' Foscari University of Venice}
+  {BSc in Computer Science}
+  {Venice, Italy}
+  {Sep 2022 -- Jul 2025}
+  {
+  \item Foundations in algorithms, data structures, software development, and AI.
+    \textbf{GPA: 29.0/30}
+    \item Research thesis on Physics-Informed Neural Networks in epidemiological modeling.
+    \item Key courses: Algorithms, Computer Architecture, Operating Systems, Networking, OOP, Intro to AI.
+    }
 
 \education
-{University of Gothenburg}
-{Sep 2024 -- Jan 2025}
-{Erasmus Exchange Program}
-{Gothenburg, Sweden}
-{
-\item Relevant courses: Introduction to Data Science and AI, Functional Programming
-}
+  {University of Gothenburg}
+  {Erasmus Exchange Program}
+  {Gothenburg, Sweden}
+  {Sep 2024 -- Jan 2025}
+  {
+    \item Relevant courses: Introduction to Data Science and AI, Functional Programming.
+    }
 
-% === Achievements ==================================================
+% --- Achievements ---
 \section{Achievements}
 
 \begin{itemize}
-  \item Selected among top 15\% of STEM mentees (2,000+ applicants), LeadTheFuture, 2025
-  \item Selected for a summer school on cutting-edge CS research led by world-class researchers, BOOST '25, 2025
-  \item Acquired a C2 level in English, Cambridge Advanced English, Grade: 203, 2025
+  \item Selected among top 15\% of STEM mentees (2,000+ applicants), LeadTheFuture, 2025.
+  \item Selected for summer school on cutting-edge CS research, BOOST '25, 2025.
+  \item Cambridge Advanced English (C2), Grade: 203, 2025.
 \end{itemize}
 
-% === Experience ====================================================
+% --- Experience ---
 \section{Experience}
 
 \experience
-{Danfoss}
-{Sep 2022 -- Present}
-{Software Developer}
-{Venice, Italy}
-{
-\item Designed and developed web applications, microservices, and data pipelines for an IoT platform.
-\item Promoted from Junior role in 2 years, leading to increased responsibility and impact.
-\item Technologies used: TypeScript, React, Go, Python, SQL, Git, CI/CD, Kubernetes, GitHub, Azure
-}
-
-% \vspace{5pt}
+  {Danfoss}
+  {Sep 2022 -- Present}
+  {Software Developer}
+  {Venice, Italy}
+  {
+  \item Designed and developed web applications, microservices, and data pipelines for an IoT platform.
+  \item Promoted from Junior role in 2 years, leading to increased responsibility and impact.
+    \item Tech: TypeScript, React, Go, Python, SQL, Git, CI/CD, Kubernetes, GitHub, Azure.
+    }
 
 \experience
-{Ca' Foscari University of Venice}
-{Oct 2025 -- Present}
-{Scientific Researcher}
-{Venice, Italy}
-{
-\item Leading the creation of a new Python Library capable of building and configuring Physics-Informed Neural Networks.
-\item Reduced training time by 30\% by introducing innovative stopping criteria in the Neural Networks training.
-\item Technologies used: Python, PyTorch, uv, Git, CI/CD, Docker, GitHub
-}
+  {Ca' Foscari University of Venice}
+  {Oct 2025 -- Present}
+  {Scientific Researcher}
+  {Venice, Italy}
+  {
+    \item Leading development of a Python library for building Physics-Informed Neural Networks.
+    \item Reduced training time by 30\% via innovative stopping criteria.
+    \item Tech: Python, PyTorch, uv, Git, CI/CD, Docker, GitHub.
+    }
 
-% \experience
-% {Company Name}
-% {Month Year -- Month Year}
-% {Job Title (e.g. Finance Analyst Intern -- Data Analytics and Automation)}
-% {City, Country}
-% {
-% \item Designed and implemented an automated reporting pipeline, saving X+ hours per week
-% \item Developed Python scripts and SQL queries for data extraction and KPI calculation (50+ KPIs)
-% \item Built and deployed automation for monthly reports, reducing manual effort by Y hours per month
-% \item Designed BI dashboards (e.g., Power BI / Tableau / QuickSight) to improve report clarity and accessibility
-% }
-
-% === Projects ======================================================
+% --- Projects ---
 \section{Projects}
 
-\textbf{\href{https://github.com/giacomoguidotto/pinn}{PINN:}}
-Developing a modular and flexible Python Library for solving mathematical problems using Physics-Informed Neural Networks. The ultimate goal is to provide an exceptional development experience, utilizing automated scripts that streamline the project setup for the user.
-\\[0.1cm]
-\textbf{\href{https://github.com/giacomoguidotto/workspace}{Workspace:}}
-Designed a declarative and robust yet flexible development environment. With configurations ranging from the Operating System to the single applications, following the XDG standard. Using Nix allows for a reproducible and sandboxed development experience.
+\project
+{PINN}
+{https://github.com/giacomoguidotto/pinn}
+{Modular Python library for solving mathematical problems using Physics-Informed Neural Networks.
+Focuses on exceptional DX with automated setup scripts.}
 
-% === Skills ========================================================
+\project
+{Workspace}
+{https://github.com/giacomoguidotto/workspace}
+{Declarative, XDG-compliant development environment using Nix for reproducible, sandboxed setups.}
+
+% --- Skills ---
 \section{Skills}
-\begin{tabularx}{\textwidth}{@{}lX@{}}
 
-  \textbf{Programming Languages:} &
-  Python, Typescript, Go, Nix, Git, \LaTeX \\
-  \textbf{Libraries/Platforms:} &
-  NumPy, Pandas, Scikit-learn, PyTorch \\
-  & PostgreSQL, VictoriaMetrics \\
-  & Next.js, React, Tailwind \\
-  \textbf{Tools:} &
-  Azure DevOps, MageAI, Sentry, Grafana, Bytebase, Postman, GitHub, Docker \\
-  \textbf{Languages:} &
-  Italian (Native), English (C2) \\
-  \textbf{Interests:} &
-  Live to 100+ years, jumping from airplanes, producing films
+% "You don't need to list all the skills you have. List the relevant for the job
+% you are applying to. Look if proficiencies levels are needed."
+\begin{tabularx}{\textwidth}{@{} l X @{}}
+  \skillrow{Languages}{Italian (Native), English (C2)}
+  \skillrow{Interests}{Live to 100+ years, jumping from airplanes, producing films}
 \end{tabularx}
 
+% --- Footer ---
 \vspace{4pt}
-\centering
-\footnotesize{\textit{I hereby authorize the treatment of my personal data according to the local law}}
+\begin{center}
+  \footnotesize\textit{I authorize the processing of my personal data pursuant to applicable law.}
+\end{center}
 
 \end{document}
