@@ -96,9 +96,7 @@
   \noindent
   \textbf{#3}, #1, #4 \hfill #2\par
   \vspace{-0.3em}
-  \begin{itemize}
-      #5
-  \end{itemize}
+  #5
   \vspace{\entryspaceafter}
 }
 
@@ -108,16 +106,19 @@
   \noindent
   \textbf{#1}, \textit{#2}, #3 \hfill #4\par
   \vspace{-0.3em}
-  \begin{itemize}
-      #5
-  \end{itemize}
+  #5
   \vspace{\entryspaceafter}
   }
   
   % --- Project entry ---
   % Usage: \project{name}{url}{description}
   \newcommand{\project}[3]{%
-  \textbf{\href{#2}{#1:}} #3\par
+    #1 \par
+    \begin{itemize}
+        \vspace{-0.3em}
+      \item #2
+      \item Repo: \href{#3}{#3}
+    \end{itemize}
   \vspace{\entryspaceafter}
 }
 
@@ -159,40 +160,56 @@
 % --- About ---
 \section{About}
 
-Software Engineer building end-to-end systems for large IoT platforms (30+
-services, 3M+ real/virtual devices, 400+ users). I work across micro-frontends
-(React/Next.js) and Go microservices on Kubernetes, with event-driven
-integrations (Kafka/MQTT) and Python data pipelines that feed ML for predictive
-energy control. I'm known for pushing pragmatic improvements: introduced Next.js
-in an incubator setting, drastically sped up local/CI feedback by rolling out
-Biome, and ramped up on Go to ship production PRs in under a week. Outside work,
-I build open-source tools: a modular Physics-Informed Neural Networks framework
-(PyTorch Lightning), a Nix-based reproducible dev environment, a
-production-ready Next.js starter for real-time apps.
+Software Engineer building end-to-end systems for large IoT platforms (30+ services, 3M+ real/virtual devices, 400+ users). \\ Worked across React/Next.js micro-frontends, Go microservices on Kubernetes, Kafka/MQTT integrations, and Python data pipelines feeding ML for predictive energy control. \\ Known for pragmatic, high-leverage improvements (Next.js adoption, Biome rollout) and fast ramp-up (learned Go and shipped production PRs in <1 week).
 
 % --- Experience ---
 \section{Experience}
 
 \experience
 {Danfoss}
-{\textit{(part-time)} Sep 2022 -- Present}
+{\textit{(Part-time)} Sep 2022 -- Present}
 {Software Developer}
 {Venice, Italy}
 {
-\item Designed and developed web applications, microservices, and data pipelines for an IoT platform.
-\item Promoted from Junior role in 2 years, leading to increased responsibility and impact.
-\item Tech: TypeScript, React, Go, Python, SQL, Git, CI/CD, Kubernetes, GitHub, Azure.
+Frontend / Micro-frontends (TypeScript, React, Next.js)
+\begin{itemize}
+    \vspace{-0.4em}
+  \item Drove adoption of Next.js on top of React in an incubator (PoC/MVP) setting, enabling a more scalable foundation for production features.
+  \item Shipped a new micro-frontend from baseline to production, collaborating across teams on APIs, routing, and shared UI patterns in a micro-frontend architecture.
+    \vspace{-0.4em}
+\end{itemize}
+
+Backend / Microservices (Go, SQL, Kafka, MQTT)
+\begin{itemize}
+    \vspace{-0.4em}
+  \item Owned a graph-representation microservice end-to-end: researched requirements, designed the data model and APIs, and implemented a sync engine to keep graph/business entities consistent with the database.
+  \item Built MQTT client certificate renewal functionality, improving operational reliability for device connectivity.
+  \item Optimized Kafka producer path for large payloads via chunking + streaming to reduce memory pressure and improve throughput for big messages.
+    \vspace{-0.4em}
+\end{itemize}
+
+Data / ML Pipelines (Python, MageAI)
+\begin{itemize}
+    \vspace{-0.4em}
+  \item Contributed to Python data processing pipelines (MageAI) interfacing with a data lake and training ML models used for predictive control of energy consumption across business entities.
+    \vspace{-0.3em}
+\end{itemize}
+Promoted from Junior to Mid-level Engineer in 2 years, leading to increased responsibility and impact.
 }
 
 \experience
 {Ca' Foscari University of Venice}
-{\textit{(part-time)} Oct 2025 -- Present}
+{\textit{(Part-time)} Oct 2025 -- Present}
 {Scientific Researcher}
 {Venice, Italy}
 {
-\item Leading development of a Python library for building Physics-Informed Neural Networks.
-\item Reduced training time by 30\% via innovative stopping criteria.
-\item Tech: Python, PyTorch, uv, Git, CI/CD, Docker, GitHub.
+  \begin{itemize}
+    \item Leading development of a Python library for Physics-Informed Neural Networks (PINNs), focusing on modular architecture
+      and strong developer experience.
+    \item Reduced training time by $\sim$30\% via novel stopping criteria and training workflow improvements.
+      \vspace{-0.4em}
+  \end{itemize}
+  Tech: Python, PyTorch, PyTorch Lightning, uv, Docker, CI/CD.
 }
 
 % --- Education ---
@@ -202,22 +219,42 @@ production-ready Next.js starter for real-time apps.
   {Ca' Foscari University of Venice}
   {BSc in Computer Science}
   {Venice, Italy}
-  {\textit{(while working)} Sep 2022 -- Jul 2025}
+  {\textit{(While working)} Sep 2022 -- Jul 2025}
   {
-  \item Foundations in algorithms, data structures, software development, and AI.
-    \textbf{GPA: 29.0/30}
-    \item Research thesis on Physics-Informed Neural Networks in epidemiological modeling.
-    \item Key courses: Algorithms, Computer Architecture, Operating Systems, Networking, OOP, Intro to AI.
-    }
+  \begin{itemize}
+    \item \textbf{GPA: 29.0/30}. Research thesis on Physics-Informed Neural Networks for epidemiological modeling.
+  \end{itemize}
+  }
 
 \education
   {University of Gothenburg}
-  {Erasmus Exchange Program}
+  {Erasmus Exchange}
   {Gothenburg, Sweden}
-  {\textit{(while working)} Sep 2024 -- Jan 2025}
+  {\textit{(While working)} Sep 2024 -- Jan 2025}
   {
-    \item Relevant courses: Introduction to Data Science and AI, Functional Programming.
+  \begin{itemize}
+    \item Relevant coursework: Data Science \& AI, Functional Programming.
+    \end{itemize}
+  }
+    
+    % --- Projects ---
+    \section{Projects}
+    
+    \project
+    {
+      \textbf{PINN:} Modular Physics-Informed Neural Networks framework  (Python, PyTorch Lightning)
+    }{
+      Framework to solve ODEs and inverse problems by composing physics constraints with configurable weights; supports learnable fields and parameters with reusable components.
     }
+    {https://github.com/giacomoguidotto/pinn}
+
+\project
+{
+  \textbf{Workspace:} Reproducible dev environment + dotfiles (Nix flakes, home-manager, Dotbot)
+}{
+  Declarative, XDG-compliant development environment using Nix for reproducible, sandboxed setups.
+}
+{https://github.com/giacomoguidotto/workspace}
 
 % --- Achievements ---
 \section{Achievements}
@@ -228,29 +265,13 @@ production-ready Next.js starter for real-time apps.
   \item Cambridge Advanced English (C2), Grade: 203, 2025.
 \end{itemize}
 
-% --- Projects ---
-\section{Projects}
-
-\project
-{PINN}
-{https://github.com/giacomoguidotto/pinn}
-{Modular Python library for solving mathematical problems using Physics-Informed Neural Networks.
-Focuses on exceptional DX with automated setup scripts.}
-
-\project
-{Workspace}
-{https://github.com/giacomoguidotto/workspace}
-{Declarative, XDG-compliant development environment using Nix for reproducible, sandboxed setups.}
-
 % --- Skills ---
-\section{Skills}
+% \section{Skills}
 
-% "You don't need to list all the skills you have. List the relevant for the job
-% you are applying to. Look if proficiencies levels are needed."
-\begin{tabularx}{\textwidth}{@{} l X @{}}
-  \skillrow{Languages}{Italian (Native), English (C2)}
-  \skillrow{Interests}{Live to 100+ years, jumping from airplanes, producing films}
-\end{tabularx}
+% \begin{tabularx}{\textwidth}{@{} l X @{}}
+%   \skillrow{Languages}{Italian (Native), English (C2)}
+%   \skillrow{Interests}{Live to 100+ years, jumping from airplanes, producing films}
+% \end{tabularx}
 
 % --- Footer ---
 \vspace{4pt}
