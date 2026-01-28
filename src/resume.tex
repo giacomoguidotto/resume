@@ -67,7 +67,7 @@
 {}                 % label
 {0em}              % sep
 {}                 % before-code
-[\titlerule]       % after-code
+[\titlerule\vspace{0.2em}]       % after-code
 
 \titlespacing*{\section}
 {0pt}                    % left
@@ -95,7 +95,7 @@
 \newcommand{\experience}[5]{%
   \noindent
   \textbf{#3}, #1, #4 \hfill #2\par
-  \vspace{-0.5em}
+  \vspace{-0.3em}
   \begin{itemize}
       #5
   \end{itemize}
@@ -107,7 +107,7 @@
 \newcommand{\education}[5]{%
   \noindent
   \textbf{#1}, \textit{#2}, #3 \hfill #4\par
-  \vspace{-0.5em}
+  \vspace{-0.3em}
   \begin{itemize}
       #5
   \end{itemize}
@@ -156,6 +156,45 @@
 {\LARGE\bfseries \myname}\par
 {\large \mytitle}
 
+% --- About ---
+\section{About}
+
+Software Engineer building end-to-end systems for large IoT platforms (30+
+services, 3M+ real/virtual devices, 400+ users). I work across micro-frontends
+(React/Next.js) and Go microservices on Kubernetes, with event-driven
+integrations (Kafka/MQTT) and Python data pipelines that feed ML for predictive
+energy control. I'm known for pushing pragmatic improvements: introduced Next.js
+in an incubator setting, drastically sped up local/CI feedback by rolling out
+Biome, and ramped up on Go to ship production PRs in under a week. Outside work,
+I build open-source tools: a modular Physics-Informed Neural Networks framework
+(PyTorch Lightning), a Nix-based reproducible dev environment, a
+production-ready Next.js starter for real-time apps.
+
+% --- Experience ---
+\section{Experience}
+
+\experience
+{Danfoss}
+{\textit{(part-time)} Sep 2022 -- Present}
+{Software Developer}
+{Venice, Italy}
+{
+\item Designed and developed web applications, microservices, and data pipelines for an IoT platform.
+\item Promoted from Junior role in 2 years, leading to increased responsibility and impact.
+\item Tech: TypeScript, React, Go, Python, SQL, Git, CI/CD, Kubernetes, GitHub, Azure.
+}
+
+\experience
+{Ca' Foscari University of Venice}
+{\textit{(part-time)} Oct 2025 -- Present}
+{Scientific Researcher}
+{Venice, Italy}
+{
+\item Leading development of a Python library for building Physics-Informed Neural Networks.
+\item Reduced training time by 30\% via innovative stopping criteria.
+\item Tech: Python, PyTorch, uv, Git, CI/CD, Docker, GitHub.
+}
+
 % --- Education ---
 \section{Education}
 
@@ -163,7 +202,7 @@
   {Ca' Foscari University of Venice}
   {BSc in Computer Science}
   {Venice, Italy}
-  {Sep 2022 -- Jul 2025}
+  {\textit{(while working)} Sep 2022 -- Jul 2025}
   {
   \item Foundations in algorithms, data structures, software development, and AI.
     \textbf{GPA: 29.0/30}
@@ -175,7 +214,7 @@
   {University of Gothenburg}
   {Erasmus Exchange Program}
   {Gothenburg, Sweden}
-  {Sep 2024 -- Jan 2025}
+  {\textit{(while working)} Sep 2024 -- Jan 2025}
   {
     \item Relevant courses: Introduction to Data Science and AI, Functional Programming.
     }
@@ -188,31 +227,6 @@
   \item Selected for summer school on cutting-edge CS research, BOOST '25, 2025.
   \item Cambridge Advanced English (C2), Grade: 203, 2025.
 \end{itemize}
-
-% --- Experience ---
-\section{Experience}
-
-\experience
-  {Danfoss}
-  {Sep 2022 -- Present}
-  {Software Developer}
-  {Venice, Italy}
-  {
-  \item Designed and developed web applications, microservices, and data pipelines for an IoT platform.
-  \item Promoted from Junior role in 2 years, leading to increased responsibility and impact.
-    \item Tech: TypeScript, React, Go, Python, SQL, Git, CI/CD, Kubernetes, GitHub, Azure.
-    }
-
-\experience
-  {Ca' Foscari University of Venice}
-  {Oct 2025 -- Present}
-  {Scientific Researcher}
-  {Venice, Italy}
-  {
-    \item Leading development of a Python library for building Physics-Informed Neural Networks.
-    \item Reduced training time by 30\% via innovative stopping criteria.
-    \item Tech: Python, PyTorch, uv, Git, CI/CD, Docker, GitHub.
-    }
 
 % --- Projects ---
 \section{Projects}
